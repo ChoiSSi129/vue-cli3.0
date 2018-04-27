@@ -9,7 +9,7 @@
                 <p class="tit">{{item.title}}</p>
                 <p class="txt">{{item.text}}</p>
                 <div class="btnWrap">
-                    <a :href="item.url" target="_blank" class="btn">작업물보기</a>
+                    <a v-if="item.url !== ''" :href="item.url" target="_blank" class="btn">작업물보기</a>
                 </div>
             </div>
         </div>
@@ -61,10 +61,10 @@ export default {
             var $view = $(".view");
             var $btnYear = $(".btnYear");
             var viewLength = $view.length;
-            $view.each((idx) => { this.setViewAlign($view.eq((viewLength-1) - idx), idx); });
+            $view.each((idx) => { this.handleViewAlign($view.eq((viewLength-1) - idx), idx); });
         },
 
-        setViewAlign(elem, key){
+        handleViewAlign(elem, key){
             var $projectList = $(".projectList");
             var viewW = elem.outerWidth(true);
             var viewH = elem.outerHeight(true);
