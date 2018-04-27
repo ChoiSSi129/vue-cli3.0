@@ -37,17 +37,21 @@ export default {
     methods: {
         setData(e, year){
             this.dataArr = [];
-            for(var i = 0; i < this.data.length; i++){
-                if(year === this.data[i].year){
-                    for(var x = 0; x < this.data[i].data.length; x++){
-                        this.dataArr.push(this.data[i].data[x]);
-                    }
-                } else {
+            if(year === undefined){
+                for(var i = 0; i < this.data.length; i++){
                     for(var x = 0; x < this.data[i].data.length; x++){
                         this.dataArr.push(this.data[i].data[x]);
                     }
                 }
-            }
+            } else {
+                for(var i = 0; i < this.data.length; i++){
+                    if(year === this.data[i].year){
+                        for(var x = 0; x < this.data[i].data.length; x++){
+                            this.dataArr.push(this.data[i].data[x]);
+                        }
+                    }
+                }
+            };
             this.$nextTick( () => {
                 if(e !== undefined){
                     $(".btnYear").removeClass("current");
